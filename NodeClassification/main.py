@@ -59,7 +59,24 @@ for dataset_info in datasets:
             else:
                   iteras_values = deleteIterations
             for max_iters in iteras_values:
-                  args = {}
+                  args = {"dataset": dataset,
+                          "method": method,
+                          "model": 'SimpleGCN",
+                          "num_heads": 8,
+                          "existing_graph": None,
+                          "out": 'res.log',
+                          "LR": lrRate,
+                          "dropout"L, dropOut,
+                          "hidden_dimension": hiddenDims,
+                          "max_iters": max_iters,
+                          "num_layers": 1,
+                          "update_period": 1, 
+                          "device": "cuda",
+                          "seed": 3164711608,
+                          "splits": 100, 
+                          "num_train": 20, 
+                          "num_val": 500,
+                          }
 # args = parse_args()
 device = torch.device(args.device)
 filename = args.out
