@@ -21,9 +21,46 @@ from train import *
 from sklearn.metrics.cluster import normalized_mutual_info_score as NMI
 from arguments import *
 
+datasets=(
+    "Cora:0.01:0.41:32:0,10,50,100,500:10,50,100,500"
+    "Citeseer:0.01:0.31:32:0,10,50,100,500:10,50,100,500"
+    "Pubmed:0.01:0.31:32:0,10,50,100,500:10,50,100,500"
+    "cornell.npz:0.001:0.4:128:0,5,10,20,50,100:5,10,20,50,100"
+    "texas.npz:0.001:0.4:128:0,5,10,20,50,100:5,10,20,50,100"
+    "wisconsin.npz:0.001:0.4:128:0,5,10,20,50,100:5,10,20,50,100"
+    "chameleon_filtered.npz:0.001:0.21:128:0,20,50,100,500:20,50,100,500,1000"
+    "squirrel_filtered.npz:0.001:0.51:128:0,20,50,100,500:20,50,100,500,1000"
+    "actor.npz:0.001:0.51:128:0,20,50,100,500:20,50,100,500,1000"
+)
 
+methods=(
+    "proxyaddmax"
+    "proxyaddmin"
+    "proxydelmax"
+    "proxydelmin"
+)
 
-args = parse_args()
+# Define a single output file for all results
+output_file="allspectralresults.csv"
+
+for dataset_info in datasets:
+      datasetName = dataset_info.split(":")[0]
+      lrRate = dataset_info.split(":")[1]
+      dropOut = dataset_info.split(":")[2]
+      hiddenDims = dataset_info.split(":")[3]
+      addIterationStr = dataset_info.split(":")[4]
+      deleteIterationStr = dataset_info.split(":")[5]
+      addIterations = [itera in addIterationStr.split(",")]
+      deleteIterations = [itera in deleteIterationStr.split(",")]
+
+      for method in methods:
+            if "add" in method:
+                  iteras_values = addIterations
+            else:
+                  iteras_values = deleteIterations
+            for max_iters in iteras_values:
+                  args = {}
+# args = parse_args()
 device = torch.device(args.device)
 filename = args.out
 graphfile = args.existing_graph
