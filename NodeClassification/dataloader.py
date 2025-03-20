@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from torch_geometric.data import Data
 from torch_geometric.transforms import RandomNodeSplit
-from torch_geometric.datasets import TUDataset, Planetoid,WebKB,Actor, WikipediaNetwork, Coauthor, EmailEUCore,Amazon,HeterophilousGraphDataset
+from torch_geometric.datasets import TUDataset, Planetoid,WebKB,Actor, WikipediaNetwork, Coauthor, EmailEUCore,Amazon #,HeterophilousGraphDataset
 from torch_geometric.transforms import NormalizeFeatures, LargestConnectedComponents
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
