@@ -98,12 +98,13 @@ def modify_k_edges(g, ranking_method, gap, vecs, deg, L_norm, k = 1):
     return False, g, deg, L_norm
 
 
-def min_and_update_edges(g, ranking_method, ranking_name, updating_period=1, max_iter=np.inf):
+def min_and_update_edges(g, ranking_method, ranking_name, max_iter=np.inf):
     """
     Process and update all edges in the graph
     according to the maximum spectral gap of the graph after deleting the edge;
     not calculated directly but using the proxy delete method.
     """
+    updating_period = 1
     e0 = g.number_of_edges()
     g = add_self_loops(g)
     start = time.time()
