@@ -36,7 +36,7 @@ def proxydelmin(data, nxgraph,seed, max_iterations):
     labels = data.y.cpu().numpy()
     
     start_algo = time.time()
-    newgraph = min_and_update_edges(nxgraph, rank_by_proxy_delete_min, "proxydeletemin",seed, max_iter=max_iterations, updating_period=1)
+    newgraph = min_and_update_edges(nxgraph, rank_by_proxy_delete_min, "proxydeletemin",seed, max_iter=max_iterations)
     newgraph.remove_edges_from(list(nx.selfloop_edges(newgraph)))
     end_algo = time.time()
     # Track the edges after deletion
@@ -136,7 +136,7 @@ def proxydelmax(data, nxgraph,seed, max_iterations):
     #         else:
     #             diff_class_diff_community_before += 1
     start_algo = time.time()
-    newgraph = process_and_update_edges(nxgraph, rank_by_proxy_delete, "proxydeletemax",seed, max_iter=max_iterations, updating_period=1)
+    newgraph = process_and_update_edges(nxgraph, rank_by_proxy_delete, "proxydeletemax",seed, max_iter=max_iterations)
     newgraph.remove_edges_from(list(nx.selfloop_edges(newgraph)))
     end_algo = time.time()
     # Track the edges after deletion
@@ -236,7 +236,7 @@ def proxyaddmax(data, nxgraph, seed,max_iterations):
     #         else:
     #             diff_class_diff_community_before += 1
     start_algo = time.time()
-    newgraph = process_and_update_edges(nxgraph, rank_by_proxy_add, "proxyaddmax",seed, max_iter=max_iterations, updating_period=1)
+    newgraph = process_and_update_edges(nxgraph, rank_by_proxy_add, "proxyaddmax",seed, max_iter=max_iterations)
     newgraph.remove_edges_from(list(nx.selfloop_edges(newgraph)))
     end_algo = time.time()
     # Track the edges after addition
@@ -321,7 +321,7 @@ def proxyaddmin(data, nxgraph,seed, max_iterations):
     # Assuming `data.y` contains the node labels
     labels = data.y.cpu().numpy()
     start_algo = time.time()
-    newgraph = min_and_update_edges(nxgraph, rank_by_proxy_add_min, "proxyaddmin", seed,max_iter=max_iterations, updating_period=1)
+    newgraph = min_and_update_edges(nxgraph, rank_by_proxy_add_min, "proxyaddmin", seed,max_iter=max_iterations)
     newgraph.remove_edges_from(list(nx.selfloop_edges(newgraph)))
     end_algo = time.time()
     # Track the edges after addition
